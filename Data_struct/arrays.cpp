@@ -1,6 +1,7 @@
 #include <iostream>
-
-using namespace std;
+//  Implement a vector (mutable array with automatic resizing):
+//  Practice coding using arrays and pointers, and pointer math to jump to an index instead of using indexing.
+// using namespace std;
 
 class array{
   private:

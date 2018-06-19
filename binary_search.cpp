@@ -20,13 +20,14 @@ int binary_search(std::vector<int> v,int num){
 }
 
 int binary_search_recursion(std::vector<int> v,int hi, int lo, int num){
+  
+  int mid = lo+(hi-lo)/2;
   if(v[mid]==num){
-    return mid
+    return mid;
   }
   if(lo>hi){
     return -1;
   }
-  int mid = lo+(hi-lo)/2;
   if(num>v[mid]){
     return binary_search_recursion(v,hi,mid+1,num);
   }
@@ -40,10 +41,12 @@ int main(){
 
   std::vector<int> v(15) ;
   for(int i = 0;i<14;i++){
+    
     v[i]=i*3;
+    std::cout<<"Value: "<< i*3<<"Index: "<< i<<endl;
   }
-  std::cout<<"Value: "<< i*3<<"Index: "<< i<<endl;
-  std::cout <<"binary search"<<binary_search(v,1) << '\n';
-
+  
+  std::cout <<"binary search "<<binary_search(v,6) << '\n';
+  std::cout<<"binary recursion "<<binary_search_recursion(v, 15,1,6)<< '\n';
 
 }

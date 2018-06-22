@@ -5,6 +5,16 @@ Created on Thu Jun 21 17:47:31 2018
 
 @author: karina
 """
+#Implement a max-heap:
+ #insert
+ #sift_up - needed for insert
+ #get_max - returns the max item, without removing it
+ #get_size() - return number of elements stored
+ #is_empty() - returns true if heap contains no elements
+ #extract_max - returns the max item, removing it
+ #sift_down - needed for extract_max
+ #remove(i) - removes item at index x
+ #heapify - take an unsorted array and turn it into a sorted array
 
 class maxHeap:
     def __init__(self):

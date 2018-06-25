@@ -5,16 +5,6 @@ Created on Thu Jun 21 17:47:31 2018
 
 @author: karina
 """
-#Implement a max-heap:
- #insert
- #sift_up - needed for insert
- #get_max - returns the max item, without removing it
- #get_size() - return number of elements stored
- #is_empty() - returns true if heap contains no elements
- #extract_max - returns the max item, removing it
- #sift_down - needed for extract_max
- #remove(i) - removes item at index x
- #heapify - take an unsorted array and turn it into a sorted array
 
 class maxHeap:
     def __init__(self):
@@ -23,7 +13,6 @@ class maxHeap:
     def insert(self, num):
         self.myList.append(num)
         self.__sift_up()
-        print(self.myList)
         
     def get_size(self):
         return len(self.myList)
@@ -38,7 +27,7 @@ class maxHeap:
         self.__swap(0,len(self.myList)-1)
         maxV = self.myList.pop(len(self.myList)-1)
         self.sift_down()
-        print(maxV)
+        return maxV
         
     def remove(self,ind):
         self.myList.pop(ind)
@@ -47,6 +36,14 @@ class maxHeap:
         for i in newList:
             self.insert(i)
         return self.myList
+    
+    def heap_sort(self, newList):
+        self.heapify(newList)
+        temp = []
+        while self.get_size()!=0:
+            temp.insert(0,self.extract_max())
+        return temp
+        
         
     
         
@@ -108,12 +105,5 @@ if __name__=="__main__":
 #    newHeap.insert(9)
 #    newHeap.toString()
     
-    list2=[9,87,6,5,43,54,67,8]
-    
-    print(newHeap.heapify(list2))
-    
-    
-        
-        
-    
-        
+    list2=[9,8,0,99,2]
+    print(newHeap.heap_sort(list2))

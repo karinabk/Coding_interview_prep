@@ -32,33 +32,49 @@ function that adds the two numbers and returns the sum as a linked list```
         if count==1:
             result.push(1)
         return result
-```Suppose the digits are stored in forward order. Repeat the above problem.```
-```Does not work yet    ```
+```Suppose the digits are stored in forward order. Repeat the above problem.``
 
-    def sum2(llist1, llist2):
-
+   def sum2(llist1, llist2):
         result = LinkedList()
         count = 0
-        i = 0
         while True:
-            runner1 = llist1.head
-            runner2 = llist2.head
-            while runner1.next!=None and runner2.next!=None:
-                runner1 = runner1.next
-                runner2 = runner2.next
-            if count == 1:
-                input = 1
-                count = 0
+            prev1 = runner1 = llist1.head
+            prev2 = runner2 = llist2.head
+            if runner1!=None:
+                while runner1.next != None:
+                    prev1 = runner1
+                    runner1 = runner1.next
+            if runner2!=None:
+                while runner2.next != None:
+                    prev2 = runner2
+                    runner2 = runner2.next
+            if runner1 == None:
+                num1 = 0
             else:
-                input = 0
-            if runner1.data + runner2.data >= 9:
-                result.push(runner1.data + runner2.data - 10 + input)
+                num1 = runner1.value
+            if runner2 == None:
+                num2 = 0
+            else:
+                num2 = runner2.value
+            input = num1 + num2 + count
+            if input >= 10:
+                input = input - 10
                 count = 1
             else:
-                result.push(runner1.data + runner2.data + input)
-            i += 1
-            if runner1 == llist1.head or runner2 == llist2.head:
+                count = 0
+            if result.head == None:
+                result.add(input)
+            else:
+                result.head = LinkedListNode(input, result.head)
+            if prev1 == runner1 and prev2 != runner2:
+                llist1.head = None
+                prev2.next = None
+            if prev1 != runner1 and prev2 == runner2:
+                llist2.head = None
+                prev1.next = None
+
+            if runner1 == prev1 and runner2 == prev2:
                 break
-            runner1=None
-            runner2=None
+        if count == 1:
+            result.head = LinkedListNode(1, result.head)
         return result

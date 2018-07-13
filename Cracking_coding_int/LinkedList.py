@@ -57,14 +57,23 @@ class LinkedList:
         while runner!=None:
             print(" {0}".format(runner.data))
             runner=runner.next
+            
+    def kthToLast(head,k):
+        if head ==None:
+            return 0
+        index = kthToLast(head.next,k)+1
+        if index == k:
+            print( head.value)
+        return index
 ```Implement an algorithm to delete a node in the middle (i.e., any node but
 the first and last node, not necessarily the exact middle) of a singly linked list, given only access to
 that node```
-    def deleteMiddle(self):
-        runner=self.head
-        for i in range(int(self.size/2)):
-            runner=runner.next
-        self.deleteNode(runner.data)
+    def deleteMiddle(self,node):
+        if node==None or node.next==None:
+            return False
+        node.next=node.next.next
+        return True
+       
 ```Write code to partition a linked list around a value x, such that all nodes less than x come
 before all nodes greater than or equal to x. If x is contained within the list, the values of x only need
 to be after the elements less than x (see below). The partition element x can appear anywhere in the
